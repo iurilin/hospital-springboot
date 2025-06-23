@@ -2,9 +2,12 @@ package com.uniter.hospital_SpringBoot.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "profissionais")
-public class ProfissionalSaude {
+public class ProfissionalSaude implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -82,4 +85,6 @@ public class ProfissionalSaude {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+
 }

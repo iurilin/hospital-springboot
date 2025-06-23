@@ -2,11 +2,13 @@ package com.uniter.hospital_SpringBoot.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "pacientes")
-public class Paciente {
+public class Paciente implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

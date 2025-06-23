@@ -2,9 +2,12 @@ package com.uniter.hospital_SpringBoot.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "usuarios")
-public class Usuario {
+public class Usuario implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +20,7 @@ public class Usuario {
     private String senha;
 
     @Column(nullable = false)
-    private String perfil;
+    private String name;
 
     @OneToOne(mappedBy = "usuario")
     private Paciente paciente;
@@ -28,11 +31,11 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long id, String email, String senha, String perfil) {
+    public Usuario(Long id, String email, String senha, String name) {
         this.id = id;
         this.email = email;
         this.senha = senha;
-        this.perfil = perfil;
+        this.name = name;
     }
 
     public Long getId() {
@@ -59,12 +62,12 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getPerfil() {
-        return perfil;
+    public String getName() {
+        return name;
     }
 
-    public void setPerfil(String perfil) {
-        this.perfil = perfil;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Paciente getPaciente() {
