@@ -1,0 +1,377 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f8f9fa;
+    color: #333;
+}
+
+.header {
+    background: #fff;
+    border-bottom: 2px solid #0ea5e9;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.logo::before {
+    content: "⚕";
+    margin-right: .5rem;
+    color: #0ea5e9;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #4b5563;
+    font-weight: 500;
+    transition: color .2s;
+}
+
+.nav-links a:hover {
+    color: #0ea5e9;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-primary {
+    background: #1861d6;
+    color: #fff;
+    padding: .5rem 1rem;
+    border: none;
+    border-radius: .375rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color .2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    background: #0d3575;
+}
+
+.btn-secondary {
+    background: #e6e9e8;
+    color: #000;
+    padding: .5rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: .375rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-secondary:hover {
+    filter: brightness(.8);
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #1861d6;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: filter .2s;
+}
+
+.user-avatar:hover {
+    filter: brightness(.9);
+}
+
+.sub-nav {
+    background: #fff;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.sub-nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    gap: 2rem;
+}
+
+.sub-nav-item {
+    padding: 1rem 0;
+    color: #666;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    transition: all .3s;
+}
+
+.sub-nav-item.active {
+    color: #4CAF50;
+    border-bottom-color: #4CAF50;
+}
+
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.calendar-section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+}
+
+.calendars-container {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.calendar {
+    flex: 1;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.calendar-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.calendar-nav {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #666;
+    cursor: pointer;
+    padding: .25rem;
+    border-radius: 4px;
+    transition: background-color .3s;
+}
+
+.calendar-nav:hover {
+    background: #f1f3f4;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: #e9ecef;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.calendar-day-header {
+    background: #f8f9fa;
+    padding: .75rem .5rem;
+    text-align: center;
+    font-size: .8rem;
+    font-weight: 600;
+    color: #666;
+}
+
+.calendar-day {
+    background: #fff;
+    padding: .75rem .5rem;
+    text-align: center;
+    font-size: .9rem;
+    cursor: pointer;
+    transition: background-color .3s;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendar-day:hover {
+    background: #f1f3f4;
+}
+
+.calendar-day.today {
+    background: #4CAF50;
+    color: #fff;
+    font-weight: 600;
+}
+
+.calendar-day.selected {
+    background: #e8f5e8;
+    color: #2e7d32;
+    font-weight: 600;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.sidebar-section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+}
+
+.sidebar-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.time-slot {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: .75rem 0;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.time-slot:last-child {
+    border-bottom: none;
+}
+
+.time-icon {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #666;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.time-icon::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: #666;
+    border-radius: 50%;
+}
+
+.time-text {
+    color: #333;
+    font-size: .9rem;
+}
+
+.consultas-section {
+    grid-column: 1 / -1;
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+}
+
+.consultas-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.consulta-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    transition: box-shadow .3s;
+}
+
+.consulta-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+    cursor: pointer;
+}
+
+.consulta-item:last-child {
+    margin-bottom: 0;
+}
+
+.consulta-icon {
+    width: 40px;
+    height: 40px;
+    background: #f1f3f4;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.consulta-time {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: .25rem;
+}
+
+.consulta-info {
+    color: #666;
+    font-size: .9rem;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    .calendars-container {
+        flex-direction: column;
+        gap: 2rem;
+        margin-bottom: 1rem;
+    }
+    .sub-nav-content {
+        padding: 0 1rem;
+    }
+    .header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

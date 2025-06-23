@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/perfilPaciente.css"> 
+    <title>Paciente - Perfil | VidaPlus</title>
+    
+</head>
+<body>
+<header class="header">
+    <div class="logo">VidaPlus</div>
+    <nav class="nav-menu">
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Serviços</a></li>
+        </ul>
+        <div class="nav-buttons" id="navButtons"></div>
+    </nav>
+</header>
+
+<main class="main-content">
+    <div class="page-header">
+        <h1 class="page-title">Perfil do Paciente</h1>
+        <p class="page-subtitle">Detalhes do seu histórico médico e tratamento</p>
+    </div>
+
+    <div class="patient-card">
+        <div class="patient-info">
+            <div class="patient-avatar">
+                <div style="width:100%;height:100%;background:#ff9999;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.5rem;font-weight:600">S</div>
+            </div>
+            <div class="patient-details">
+                <h2>Sofia Almeida</h2>
+                <div class="role">Paciente</div>
+                <div class="id">ID do Paciente: 123456</div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <a href="#" class="tab active" data-tab="geral">Geral</a>
+            <a href="#" class="tab" data-tab="exames">Exames</a>
+            <a href="#" class="tab" data-tab="diagnosticos">Diagnósticos</a>
+        </div>
+
+        <div class="tab-content active" id="geral">
+            <div class="section">
+                <h3 class="section-title">Informações Pessoais</h3>
+                <div class="info-grid">
+                    <div>
+                        <div class="info-item">
+                            <div class="info-label">Nome Completo</div>
+                            <div class="info-value">Sofia Almeida</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Sexo</div>
+                            <div class="info-value">Feminino</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Telefone</div>
+                            <div class="info-value">+11 94545 5678</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="info-item">
+                            <div class="info-label">Data de Nascimento</div>
+                            <div class="info-value">15 de Maio de 1994</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Endereço</div>
+                            <div class="info-value">Rua das Flores, 123, Lisboa</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Email</div>
+                            <div class="info-value">sofia.almeida@email.com</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">Histórico de Consultas</h3>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>Data</th><th>Médico</th><th>Especialidade</th><th>Motivo</th></tr></thead>
+                        <tbody>
+                            <tr><td>10/01/2024</td><td>Dr. Carlos Pereira</td><td>Cardiologia</td><td>Check-up anual</td></tr>
+                            <tr><td>15/04/2024</td><td>Dra. Ana Silva</td><td>Dermatologia</td><td>Consulta de rotina</td></tr>
+                            <tr><td>20/06/2024</td><td>Dr. João Santos</td><td>Ortopedia</td><td>Dor no joelho</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="exames">
+            <div class="section">
+                <h3 class="section-title">Exames Realizados</h3>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>Data</th><th>Tipo de Exame</th><th>Resultado</th><th>Laudo</th><th>Imagens</th></tr></thead>
+                        <tbody>
+                            <tr><td>15/02/2024</td><td>Raio-X do Tórax</td><td>Normal</td><td><a href="#" class="btn-link">Visualizar</a></td><td><span class="exam-icon"></span></td></tr>
+                            <tr><td>20/03/2024</td><td>Hemograma Completo</td><td>Dentro dos limites normais</td><td><a href="#" class="btn-link">Visualizar</a></td><td>-</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="diagnosticos">
+            <div class="section">
+                <h3 class="section-title">Diagnósticos</h3>
+                <p style="color:#666;text-align:center;padding:2rem">Nenhum diagnóstico registrado.</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script type="module" src="../js/controllers/perfilPacienteController.js">
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/marcarConsulta.css"> 
+    <title>Paciente - Marcar consulta | VidaPlus</title>
+    
+</head>
+<body>
+<header class="header">
+    <div class="logo">VidaPlus</div>
+    <nav class="nav-menu">
+        <ul class="nav-links">
+            <li><a href="#">Serviços</a></li>
+            <li><a href="#">Sobre</a></li>
+        </ul>
+        <div class="nav-buttons" id="navButtons"></div>
+    </nav>
+</header>
+
+<main class="main-content">
+    <h1 class="page-title">Agendar uma consulta</h1>
+    <form id="appointmentForm">
+        <div class="form-group"><select class="form-select" id="specialty" required><option value="">Selecione a especialidade</option><option value="cardiologia">Cardiologia</option><option value="dermatologia">Dermatologia</option><option value="neurologia">Neurologia</option><option value="pediatria">Pediatria</option><option value="ortopedia">Ortopedia</option><option value="ginecologia">Ginecologia</option><option value="oftalmologia">Oftalmologia</option></select></div>
+        <div class="form-group"><select class="form-select" id="doctor" required><option value="">Selecione o médico</option></select></div>
+        <div class="form-group"><select class="form-select" id="date" required><option value="">Selecione a data</option><option value="2025-07-01">01 de Julho, 2025</option><option value="2025-07-02">02 de Julho, 2025</option><option value="2025-07-03">03 de Julho, 2025</option><option value="2025-07-04">04 de Julho, 2025</option><option value="2025-07-05">05 de Julho, 2025</option></select></div>
+        <div class="form-group"><select class="form-select" id="time" required><option value="">Selecione o horário</option><option value="08:00">08:00</option><option value="09:00">09:00</option><option value="10:00">10:00</option><option value="11:00">11:00</option><option value="14:00">14:00</option><option value="15:00">15:00</option><option value="16:00">16:00</option></select></div>
+        <div class="consultation-type">
+            <div class="type-option"><div class="type-radio"><input type="radio" name="consultationType" value="presencial" id="presencial" checked><div class="radio-custom"></div></div><label for="presencial" class="type-label">Presencial</label></div>
+            <div class="type-option"><div class="type-radio"><input type="radio" name="consultationType" value="telemedicina" id="telemedicina"><div class="radio-custom"></div></div><label for="telemedicina" class="type-label">Telemedicina</label></div>
+        </div>
+        <button type="submit" class="submit-btn">Agendar Consulta</button>
+    </form>
+</main>
+
+<script type="module" src="../js/controllers/marcarConsultaController.js"></script>
+</body>
+</html>

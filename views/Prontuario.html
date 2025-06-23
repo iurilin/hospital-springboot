@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/prontuario.css"> 
+    <title>Profissional de Saúde - Prontuário | VidaPlus</title>
+    
+</head>
+<body>
+<header class="header">
+    <div class="logo">VidaPlus</div>
+    <nav class="nav-menu">
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Serviços</a></li>
+        </ul>
+        <div class="nav-buttons" id="navButtons"></div>
+    </nav>
+</header>
+
+<main class="main-content">
+    <div class="page-header">
+        <h1 class="page-title">Prontuário do Paciente</h1>
+        <p class="page-subtitle">Detalhes do histórico médico e tratamento do paciente</p>
+    </div>
+
+    <div class="tabs">
+        <div class="tab active" data-tab="geral">Geral</div>
+        <div class="tab" data-tab="historico">Histórico Médico</div>
+        <div class="tab" data-tab="exames">Exames</div>
+        <div class="tab" data-tab="diagnosticos">Diagnósticos</div>
+        <div class="tab" data-tab="tratamentos">Tratamentos</div>
+    </div>
+
+    <div class="tab-content active" id="geral">
+        <h2 class="section-title">Informações Pessoais</h2>
+        <div class="form-grid">
+            <div class="form-group"><label class="form-label">Nome</label><input type="text" class="form-input"></div>
+            <div class="form-group"><label class="form-label">Data de Nascimento</label><input type="date" class="form-input"></div>
+            <div class="form-group"><label class="form-label">Sexo</label><select class="form-input"><option value="">Selecione</option><option>Masculino</option><option>Feminino</option></select></div>
+            <div class="form-group"><label class="form-label">Telefone</label><input type="tel" class="form-input"></div>
+            <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input"></div>
+            <div class="form-group"><label class="form-label">Endereço</label><input type="text" class="form-input"></div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="historico">
+        <h2 class="section-title">Consultas Anteriores</h2>
+        <div class="table-container"><table><thead><tr><th>Data</th><th>Médico</th><th>Especialidade</th><th>Motivo</th><th>Observações</th></tr></thead><tbody><tr><td>10/05/2023</td><td>Dr. Ricardo Almeida</td><td>Clínica Geral</td><td>Check-up anual</td><td>Paciente em bom estado geral</td></tr><tr><td>15/08/2023</td><td>Dra. Sofia Mendes</td><td>Dermatologia</td><td>Consulta dermatológica</td><td>Avaliação de lesões cutâneas</td></tr><tr><td>20/11/2023</td><td>Dr. Lucas Oliveira</td><td>Cardiologia</td><td>Consulta cardiológica</td><td>Monitoramento da pressão arterial</td></tr></tbody></table></div>
+        <h2 class="section-title">Internações</h2>
+        <div class="table-container"><table><thead><tr><th>Data de Entrada</th><th>Data de Saída</th><th>Motivo</th><th>Hospital</th><th>Observações</th></tr></thead><tbody><tr><td>05/02/2023</td><td>12/02/2023</td><td>Pneumonia</td><td>Hospital Central</td><td>Tratamento com antibióticos</td></tr><tr><td>18/07/2023</td><td>25/07/2023</td><td>Cirurgia de apendicite</td><td>Hospital Regional</td><td>Recuperação pós-operatória sem complicações</td></tr></tbody></table></div>
+    </div>
+
+    <div class="tab-content" id="exames">
+        <h2 class="section-title">Exames Realizados</h2>
+        <div class="table-container"><table><thead><tr><th>Data</th><th>Tipo de Exame</th><th>Resultado</th><th>Imagens/Laudos</th></tr></thead><tbody><tr><td>15/01/2024</td><td>Raio-X do Tórax</td><td>Normal</td><td><a href="#" class="btn-link">Ver laudo</a></td></tr><tr><td>20/02/2024</td><td>Ultrassonografia Abdominal</td><td>Sem alterações</td><td><a href="#" class="btn-link">Ver imagens</a></td></tr><tr><td>10/03/2024</td><td>Ressonância Magnética do Joelho</td><td>Lesão no menisco</td><td><a href="#" class="btn-link">Ver laudo e imagens</a></td></tr></tbody></table></div>
+    </div>
+
+    <div class="tab-content" id="diagnosticos">
+        <h2 class="section-title">Diagnósticos Registrados</h2>
+        <div class="table-container"><table><thead><tr><th>Data</th><th>Diagnóstico</th><th>Observações</th></tr></thead><tbody><tr><td>22/03/2024</td><td>Hipertensão</td><td>Paciente apresenta pressão arterial elevada constantemente</td></tr><tr><td>22/03/2024</td><td>Diabetes Tipo 2</td><td>Níveis de glicose elevados</td></tr></tbody></table></div>
+        <div class="text-center"><button class="btn-primary-action" onclick="alert('Adicionar Diagnóstico')">Adicionar Diagnóstico</button></div>
+    </div>
+
+    <div class="tab-content" id="tratamentos">
+        <h2 class="section-title">Tratamentos Registrados</h2>
+        <div class="table-container"><table><thead><tr><th>Data</th><th>Tratamento</th><th>Dosagem</th><th>Observações</th></tr></thead><tbody><tr><td>23/03/2024</td><td>Medicação X</td><td>50mg</td><td>Administrar uma vez ao dia</td></tr><tr><td>23/03/2024</td><td>Fisioterapia</td><td>Sessões semanais</td><td>Fortalecimento</td></tr></tbody></table></div>
+        <div class="text-center"><button class="btn-secondary-action" onclick="alert('Adicionar Tratamento')">Adicionar Tratamento</button></div>
+    </div>
+</main>
+
+<script type="module" src="../js/controllers/prontuarioController.js">
+    
+</script>
+</body>
+</html>

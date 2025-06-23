@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/gestaoAgenda.css"> 
+    <title>VidaPlus - Agenda</title>
+    <script src="script.js" defer></script>
+</head>
+    
+
+<body>
+
+    <header class="header">
+        <div class="logo">VidaPlus</div>
+        <nav class="nav-menu">
+            <ul class="nav-links">
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+            </ul>
+            <div class="nav-buttons" id="navButtons"></div>
+        </nav>
+    </header>
+
+    <nav class="sub-nav">
+        <div class="sub-nav-content">
+            <a href="#" class="sub-nav-item">Hoje</a>
+            <a href="#" class="sub-nav-item active">Agenda</a>
+            <a href="#" class="sub-nav-item">Nova Consulta</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="calendar-section">
+            <div class="calendars-container">
+                <div class="calendar">
+                    <div class="calendar-header">
+                        <button class="calendar-nav" id="prev-month-0">‹</button>
+                        <h3 class="calendar-title" id="calendar-title-0"></h3>
+                        <button class="calendar-nav" id="next-month-0">›</button>
+                    </div>
+                    <div class="calendar-grid" id="calendar-grid-0"></div>
+                </div>
+                <div class="calendar">
+                    <div class="calendar-header">
+                        <button class="calendar-nav" id="prev-month-1">‹</button>
+                        <h3 class="calendar-title" id="calendar-title-1"></h3>
+                        <button class="calendar-nav" id="next-month-1">›</button>
+                    </div>
+                    <div class="calendar-grid" id="calendar-grid-1"></div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Horários de Atendimento</h3>
+                <div id="time-slots-container">
+                    </div>
+            </div>
+        </aside>
+
+        <section class="consultas-section">
+            <h2 class="consultas-title">Consultas Agendadas para o dia</h2>
+            <div id="consultas-list">
+                 <div class="consulta-item"><div class="consulta-icon">📋</div><div class="consulta-details"><div class="consulta-time">11:30 - Ana Costa - Primeira Consulta</div></div></div>
+                 <div class="consulta-item"><div class="consulta-icon">📋</div><div class="consulta-details"><div class="consulta-time">11:00 - Carlos Pereira - Consulta de Acompanhamento</div></div></div>
+                 <div class="consulta-item"><div class="consulta-icon">📋</div><div class="consulta-details"><div class="consulta-time">10:00 - Sofia Almeida - Consulta de Rotina</div></div></div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const now = new Date();
+    const calendars = [
+        { year: now.getFullYear(), month: now.getMonth() },
+        { year: now.getFullYear(), month: now.getMonth() + 1 } 
+    ];
+    
+    if (calendars[1].month > 11) {
+        calendars[1].month = 0;
+        calendars[1].year++;
+    }
+
+    const monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+    const dayNames = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']; 
+    const availableTimes = ['08:00 - 09:00', '09:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00'];
+
+    const saveAuth = (data) => {
+        localStorage.setItem('authToken', data.token);
+        localStorage.setItem('userName', data.user.nome);
+    };
+
+    const clearAuth = () => {
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('userName');
+    };
+
+    const isLogged = () => !!localStorage.getItem('authToken');
+
+    const renderHeader = () => {
+        const navButtons = document.getElementById('navButtons');
+        navButtons.innerHTML = ''; 
+        if (isLogged()) {
+            const nome = localStorage.getItem('userName') || '';
+            const letra = nome.trim().charAt(0).toUpperCase();
+            const avatar = document.createElement('div');
+            avatar.className = 'user-avatar';
+            avatar.textContent = letra;
+            avatar.title = `Olá, ${nome}. Clique para sair.`;
+            avatar.addEventListener('click', () => {
+                if (confirm('Sair da conta?')) {
+                    clearAuth();
+                    renderHeader();
+                }
+            });
+            navButtons.appendChild(avatar);
+        } else {
+            navButtons.innerHTML = `
+                <a href="#marcar-consulta" class="btn-primary">Marcar Consulta</a>
+                <a href="/cadastro.html" class="btn-secondary">Cadastro/Login</a>
+            `;
+        }
+    };
+
+    const generateCalendar = (calendarIndex) => {
+        const cal = calendars[calendarIndex];
+        const grid = document.getElementById(`calendar-grid-${calendarIndex}`);
+        const title = document.getElementById(`calendar-title-${calendarIndex}`);
+
+        if (!grid || !title) return;
+
+        title.textContent = `${monthNames[cal.month]} ${cal.year}`;
+        grid.innerHTML = '';
+
+        dayNames.forEach(day => {
+            const dayHeader = document.createElement('div');
+            dayHeader.className = 'calendar-day-header';
+            dayHeader.textContent = day;
+            grid.appendChild(dayHeader);
+        });
+
+        const firstDayOfMonth = new Date(cal.year, cal.month, 1).getDay();
+        const daysInMonth = new Date(cal.year, cal.month + 1, 0).getDate();
+        const today = new Date();
+
+        for (let i = 0; i < firstDayOfMonth; i++) {
+            const emptyCell = document.createElement('div');
+            emptyCell.className = 'calendar-day';
+            grid.appendChild(emptyCell);
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dayCell = document.createElement('div');
+            dayCell.className = 'calendar-day';
+            dayCell.textContent = day;
+
+            if (cal.year === today.getFullYear() && cal.month === today.getMonth() && day === today.getDate()) {
+                dayCell.classList.add('today');
+            }
+
+            dayCell.addEventListener('click', function () {
+                document.querySelectorAll('.calendar-day.selected').forEach(selected => selected.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+            grid.appendChild(dayCell);
+        }
+    };
+    
+    const changeMonth = (calendarIndex, direction) => {
+        const cal = calendars[calendarIndex];
+        cal.month += direction;
+
+        if (cal.month > 11) {
+            cal.month = 0;
+            cal.year++;
+        } else if (cal.month < 0) {
+            cal.month = 11;
+            cal.year--;
+        }
+        generateCalendar(calendarIndex);
+    };
+
+    const renderTimeSlots = () => {
+        const container = document.getElementById('time-slots-container');
+        if (!container) return;
+        container.innerHTML = '';
+        availableTimes.forEach(time => {
+            container.innerHTML += `
+                <div class="time-slot">
+                    <div class="time-icon"></div>
+                    <span class="time-text">${time}</span>
+                </div>
+            `;
+        });
+    };
+    
+    const addEventListeners = () => {
+        document.getElementById('prev-month-0').addEventListener('click', () => changeMonth(0, -1));
+        document.getElementById('next-month-0').addEventListener('click', () => changeMonth(0, 1));
+        document.getElementById('prev-month-1').addEventListener('click', () => changeMonth(1, -1));
+        document.getElementById('next-month-1').addEventListener('click', () => changeMonth(1, 1));
+
+        document.querySelectorAll('.consulta-item').forEach(item => {
+            item.addEventListener('click', () => alert('Detalhes da consulta serão implementados em breve!'));
+        });
+
+        document.querySelectorAll('.sub-nav-item').forEach(navItem => {
+            navItem.addEventListener('click', function(event) {
+                event.preventDefault();
+                document.querySelectorAll('.sub-nav-item').forEach(item => item.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#marcar-consulta' || href === '#servicos' || href === '#sobre') {
+                    e.preventDefault();
+                    console.log(`Ação para: ${href}`);
+                }
+            });
+        });
+    };
+
+    const init = () => {
+        renderHeader();
+        generateCalendar(0);
+        generateCalendar(1);
+        renderTimeSlots();
+        addEventListeners();
+    };
+
+    init();
+});
+    </script>
+
+</body>
+</html>

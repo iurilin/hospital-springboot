@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/esqueceuSenha.css"> 
+    <title>VidaPlus - Recuperar Senha</title>
+   
+</head>
+<body>
+    
+    <header class="header">
+        <div class="logo">VidaPlus</div>
+        <nav class="nav-menu">
+            <ul class="nav-links">
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="#marcar-consulta" class="btn-primary">Marcar Consulta</a>
+                <a href="#cadastro" class="btn-secondary">Cadastro/Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <form class="recovery-form" id="recoveryForm">
+            <h1 class="form-title">Recupere sua senha</h1>
+            <div class="form-group" id="emailGroup">
+                <label for="email" class="form-label">Digite seu email</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    class="form-input" 
+                    placeholder="email123@gmail.com"
+                    required
+                >
+                <div class="error-message" id="emailError">Por favor, insira um email válido.</div>
+            </div>
+
+            <button type="submit" class="btn-submit" id="submitBtn">Enviar</button>
+        </form>
+    </main>
+
+    <script>
+        const recoveryForm = document.getElementById('recoveryForm');
+        const emailInput = document.getElementById('email');
+        const submitBtn = document.getElementById('submitBtn');
+        const emailGroup = document.getElementById('emailGroup');
+
+        function validateEmail(email) {
+            const re = /^\S+@\S+\.\S+$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function validateForm() {
+            let isValid = true;
+            if (!validateEmail(emailInput.value)) {
+                emailGroup.classList.add('error');
+                isValid = false;
+            } else {
+                emailGroup.classList.remove('error');
+            }
+            return isValid;
+        }
+
+        emailInput.addEventListener('input', function() {
+            if (emailGroup.classList.contains('error')) {
+                emailGroup.classList.remove('error');
+            }
+        });
+
+        recoveryForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) {
+                return;
+            }
+            
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            
+            const formData = {
+                email: emailInput.value
+            };
+            
+            try {
+                const response = await fetch('/api/auth/forgot-password', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                if (response.ok) {
+                    alert('Se este email estiver cadastrado, você receberá um link para redefinir sua senha.');
+                    recoveryForm.reset();
+                } else {
+                    const errorData = await response.json();
+                    console.error('Server error:', errorData.message);
+                    alert('Ocorreu um erro. Por favor, tente novamente mais tarde.');
+                }
+
+            } catch (error) {
+                console.error('Network error:', error);
+                alert('Erro de conexão. Tente novamente mais tarde.');
+            } finally {
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
