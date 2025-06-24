@@ -28,4 +28,14 @@ export class Consulta {
   static fromJSON(json) {
     return new Consulta(json)
   }
+
+  isValid() {
+    return this.pacienteId && this.medicoId && this.especialidade && this.data && this.hora
+  }
+
+  getDataFormatada() {
+    if (!this.data) return ""
+    const date = new Date(this.data)
+    return date.toLocaleDateString("pt-BR")
+  }
 }

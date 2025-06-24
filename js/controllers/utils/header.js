@@ -21,15 +21,16 @@ export function renderHeader(navContainerId = "navButtons", { showBtn = true } =
     const avatar = document.createElement("div")
     avatar.className = "user-avatar"
     avatar.textContent = getUserName().trim().charAt(0).toUpperCase()
-    avatar.title = "Clique para sair"
+    avatar.title = `${getUserName()} - Clique para sair`
     avatar.style.cursor = "pointer"
-    avatar.onclick = () => {
-      if (confirm("Sair da conta?")) {
+
+    avatar.addEventListener("click", () => {
+      if (confirm("Deseja sair da conta?")) {
         clearAuth()
-        renderHeader(navContainerId, { showBtn })
         window.location.href = "/views/home.html"
       }
-    }
+    })
+
     nav.appendChild(avatar)
   } else {
     const login = document.createElement("a")

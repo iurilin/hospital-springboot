@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/relatorios.css"> 
+    <title>Admin - Relatórios | VidaPlus</title>
+</head>
+<body>
+<header class="header">
+    <div class="logo">Admin</div>
+    <nav class="nav-menu">
+        <ul class="nav-links">
+            <li><a href="../views/dashboard.html">Dashboard</a></li>
+            <li><a href="../views/gerenciamento.html">Gerenciamento</a></li>
+            <li><a href="../views/relatorios.html" class="active">Relatórios</a></li>
+        </ul>
+        <div class="nav-buttons" id="navButtons"></div>
+    </nav>
+</header>
+
+<main class="main-content">
+    <div class="page-header">
+        <h1 class="page-title">Relatórios</h1>
+    </div>
+
+    <div class="report-section">
+        <h2 class="section-title">Selecione o tipo de relatório</h2>
+        
+        <div class="report-options">
+            <div class="report-option">
+                <input type="radio" id="relatorio-pacientes" name="tipoRelatorio" value="pacientes" checked>
+                <label for="relatorio-pacientes" class="option-label">
+                    <div class="option-content">
+                        <div class="option-title">Relatório de Pacientes</div>
+                    </div>
+                </label>
+            </div>
+
+            <div class="report-option">
+                <input type="radio" id="relatorio-medicos" name="tipoRelatorio" value="medicos">
+                <label for="relatorio-medicos" class="option-label">
+                    <div class="option-content">
+                        <div class="option-title">Relatório de Médicos</div>
+                    </div>
+                </label>
+            </div>
+
+            <div class="report-option">
+                <input type="radio" id="relatorio-agendamentos" name="tipoRelatorio" value="agendamentos">
+                <label for="relatorio-agendamentos" class="option-label">
+                    <div class="option-content">
+                        <div class="option-title">Relatório de Agendamentos</div>
+                    </div>
+                </label>
+            </div>
+
+            <div class="report-option">
+                <input type="radio" id="relatorio-financeiro" name="tipoRelatorio" value="financeiro">
+                <label for="relatorio-financeiro" class="option-label">
+                    <div class="option-content">
+                        <div class="option-title">Relatório Financeiro</div>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <div class="action-container">
+            <button class="btn-gerar-relatorio">
+                Gerar Relatório
+            </button>
+        </div>
+    </div>
+</main>
+
+<script type="module" src="../js/controllers/relatoriosController.js"></script>
+</body>
+</html>

@@ -23,6 +23,18 @@ export class Prontuario {
     this.consultas.push(consulta instanceof Consulta ? consulta : new Consulta(consulta))
   }
 
+  addExame(exame) {
+    this.exames.push(exame)
+  }
+
+  addDiagnostico(diagnostico) {
+    this.diagnosticos.push(diagnostico)
+  }
+
+  addTratamento(tratamento) {
+    this.tratamentos.push(tratamento)
+  }
+
   toJSON() {
     return {
       ...this,

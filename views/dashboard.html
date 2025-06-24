@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/dashboard.css"> 
+    <title>Admin - Dashboard | VidaPlus</title>
+</head>
+<body>
+<header class="header">
+    <div class="logo">Admin</div>
+    <nav class="nav-menu">
+        <ul class="nav-links">
+            <li><a href="../views/dashboard.html" class="active">Dashboard</a></li>
+            <li><a href="../views/gerenciamento.html">Gerenciamento</a></li>
+            <li><a href="../views/relatorios.html">Relatórios</a></li>
+        </ul>
+        <div class="nav-buttons" id="navButtons"></div>
+    </nav>
+</header>
+
+<main class="main-content">
+    <div class="page-header">
+        <h1 class="page-title">Dashboard</h1>
+    </div>
+
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-label">Total de Pacientes</div>
+            <div class="metric-value">1,250</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Consultas Agendadas</div>
+            <div class="metric-value">320</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-label">Médicos Ativos</div>
+            <div class="metric-value">45</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Consultas Recentes</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Paciente</th>
+                        <th>Médico</th>
+                        <th>Especialidade</th>
+                        <th>Data</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sofia Almeida</td>
+                        <td>Dr. Carlos Mendes</td>
+                        <td>Cardiologia</td>
+                        <td>2024-07-26 10:00</td>
+                        <td><span class="status-confirmada">Confirmada</span></td>
+                    </tr>
+                    <tr>
+                        <td>Lucas Pereira</td>
+                        <td>Dra. Ana Costa</td>
+                        <td>Pediatria</td>
+                        <td>2024-07-26 11:30</td>
+                        <td><span class="status-pendente">Pendente</span></td>
+                    </tr>
+                    <tr>
+                        <td>Isabela Santos</td>
+                        <td>Dr. Ricardo Lima</td>
+                        <td>Dermatologia</td>
+                        <td>2024-07-27 09:00</td>
+                        <td><span class="status-confirmada">Confirmada</span></td>
+                    </tr>
+                    <tr>
+                        <td>Mateus Oliveira</td>
+                        <td>Dra. Fernanda Rocha</td>
+                        <td>Ginecologia</td>
+                        <td>2024-07-27 14:00</td>
+                        <td><span class="status-pendente">Pendente</span></td>
+                    </tr>
+                    <tr>
+                        <td>Laura Martins</td>
+                        <td>Dr. Paulo Souza</td>
+                        <td>Ortopedia</td>
+                        <td>2024-07-28 16:00</td>
+                        <td><span class="status-confirmada">Confirmada</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Relatório de Consultas</h2>
+        <div class="chart-container">
+            <div class="chart-header">
+                <div class="chart-title">Consultas por Especialidade</div>
+                <div class="chart-value">150</div>
+                <div class="chart-subtitle">Último Mês <span class="chart-growth">+10%</span></div>
+            </div>
+            <div class="chart-bars">
+                <div class="chart-bar">
+                    <div class="bar-label">Cardiologia</div>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="height: 80%"></div>
+                    </div>
+                </div>
+                <div class="chart-bar">
+                    <div class="bar-label">Pediatria</div>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="height: 60%"></div>
+                    </div>
+                </div>
+                <div class="chart-bar">
+                    <div class="bar-label">Dermatologia</div>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="height: 45%"></div>
+                    </div>
+                </div>
+                <div class="chart-bar">
+                    <div class="bar-label">Ginecologia</div>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="height: 40%"></div>
+                    </div>
+                </div>
+                <div class="chart-bar">
+                    <div class="bar-label">Ortopedia</div>
+                    <div class="bar-container">
+                        <div class="bar-fill" style="height: 35%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script type="module" src="../js/controllers/dashboardController.js"></script>
+</body>
+</html>

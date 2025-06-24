@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/gerenciamento.css"> 
+    <title>Admin - Gerenciamento | VidaPlus</title>
+</head>
+<body>
+<header class="header">
+    <div class="logo">Admin</div>
+    <nav class="nav-menu">
+        <ul class="nav-links">
+            <li><a href="../views/dashboard.html">Dashboard</a></li>
+            <li><a href="../views/gerenciamento.html" class="active">Gerenciamento</a></li>
+            <li><a href="../views/relatorios.html">Relatórios</a></li>
+        </ul>
+        <div class="nav-buttons" id="navButtons"></div>
+    </nav>
+</header>
+
+<main class="main-content">
+    <div class="page-header">
+        <h1 class="page-title">Gerenciamento de Cadastros</h1>
+    </div>
+
+    <div class="tabs">
+        <a href="#" class="tab active" data-tab="pacientes">Pacientes</a>
+        <a href="#" class="tab" data-tab="profissionais">Profissionais</a>
+    </div>
+
+    <!-- Conteúdo da aba Pacientes -->
+    <div class="tab-content active" id="pacientes">
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" placeholder="Buscar pacientes" class="search-input" id="searchPacientes">
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Carteirinha / ID</th>
+                        <th>Contato</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="pacientesTable">
+                    <tr>
+                        <td>Dr. Ricardo Almeida</td>
+                        <td>12542421</td>
+                        <td>(11) 98765-4321</td>
+                        <td><span class="status-ativo">Ativo</span></td>
+                        <td><button class="btn-editar">Editar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Dra. Sofia Pereira</td>
+                        <td>215424124</td>
+                        <td>(11) 91234-5678</td>
+                        <td><span class="status-ativo">Ativo</span></td>
+                        <td><button class="btn-editar">Editar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Dr. Lucas Martins</td>
+                        <td>123214214</td>
+                        <td>(11) 94567-8901</td>
+                        <td><span class="status-inativo">Inativo</span></td>
+                        <td><button class="btn-editar">Editar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Dra. Beatriz Costa</td>
+                        <td>152521525</td>
+                        <td>(11) 92345-6789</td>
+                        <td><span class="status-ativo">Ativo</span></td>
+                        <td><button class="btn-editar">Editar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Dr. Eduardo Santos</td>
+                        <td>512576474</td>
+                        <td>(11) 97890-1234</td>
+                        <td><span class="status-ativo">Ativo</span></td>
+                        <td><button class="btn-editar">Editar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Conteúdo da aba Profissionais -->
+    <div class="tab-content" id="profissionais">
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" placeholder="Buscar profissionais" class="search-input" id="searchProfissionais">
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Especialidade</th>
+                        <th>Contato</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="profissionaisTable">
+                    <tr>
+                        <td>Dr. Ricardo Almeida</td>
+                        <td>Cardiologista</td>
+                        <td>(11) 98765-4321</td>
+                        <td><span class="status-ativo">Ativo</span></td>
+                        <td><button class="btn-editar">Editar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Dra. Sofia Pereira</td>
+                        <td>Dermatologista</td>
+                        <td>(11) 91234-5678</td>
+                        <td><span class="status-ativo">Ativo</span></td>
+                        <td><button class="btn-editar">Editar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Dr. Lucas Martins</td>
+                        <td>Pediatra</td>
+                        <td>(11) 94567-8901</td>
+                        <td><span class="status-inativo">Inativo</span></td>
+                        <td><button class="btn-editar">Editar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Dra. Beatriz Costa</td>
+                        <td>Ginecologista</td>
+                        <td>(11) 92345-6789</td>
+                        <td><span class="status-ativo">Ativo</span></td>
+                        <td><button class="btn-editar">Editar</button></td>
+                    </tr>
+                    <tr>
+                        <td>Dr. Eduardo Santos</td>
+                        <td>Ortopedista</td>
+                        <td>(11) 97890-1234</td>
+                        <td><span class="status-ativo">Ativo</span></td>
+                        <td><button class="btn-editar">Editar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<script src="../js/controllers/gerenciamentoController.js"></script>
+</body>
+</html>

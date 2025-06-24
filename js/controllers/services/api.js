@@ -6,30 +6,48 @@ export async function apiRequest(
   path,
   { method = "GET", body = null, token = localStorage.getItem("authToken") } = {},
 ) {
-  const headers = { "Content-Type": "application/json" }
-  if (token) headers.Authorization = `Bearer ${token}`
+  const headers = {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  }
+
+  if (token) {
+    headers.Authorization = `Bearer ${token}`
+  }
 
   try {
-    const res = await fetch(`${BASE_URL}${path}`, {
+    console.log(`🌐 API Request: ${method} ${BASE_URL}${path}`)
+
+    const response = await fetch(`${BASE_URL}${path}`, {
       method,
       headers,
       body: body ? JSON.stringify(body) : null,
     })
 
-    if (res.status === 401) {
+    console.log(`📡 Response Status: ${response.status}`)
+
+    if (response.status === 401) {
+      console.warn("🔒 Token expirado, redirecionando para login")
       clearAuth()
       window.location.href = "/views/login.html"
       throw new Error("Sessão expirada")
     }
 
-    if (!res.ok) {
-      const err = await res.text()
-      throw new Error(err || res.statusText)
+    if (!response.ok) {
+      const errorText = await response.text()
+      console.error("❌ API Error:", errorText)
+      throw new Error(errorText || `HTTP ${response.status}: ${response.statusText}`)
     }
 
-    return res.status === 204 ? null : res.json()
+    if (response.status === 204) {
+      return null
+    }
+
+    const data = await response.json()
+    console.log("✅ API Response:", data)
+    return data
   } catch (error) {
-    console.error("Erro na API:", error)
+    console.error("❌ API Request failed:", error)
     throw error
   }
 }

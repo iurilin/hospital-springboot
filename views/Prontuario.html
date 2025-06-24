@@ -37,15 +37,15 @@
         <div class="form-grid">
             <div class="form-group">
                 <label class="form-label">Nome</label>
-                <input type="text" class="form-input" value="Sofia Almeida">
+                <input type="text" class="form-input" name="nome" value="Sofia Almeida">
             </div>
             <div class="form-group">
                 <label class="form-label">Data de Nascimento</label>
-                <input type="date" class="form-input" value="1994-05-15">
+                <input type="date" class="form-input" name="dataNascimento" value="1994-05-15">
             </div>
             <div class="form-group">
                 <label class="form-label">Sexo</label>
-                <select class="form-input">
+                <select class="form-input" name="sexo">
                     <option value="">Selecione</option>
                     <option value="masculino">Masculino</option>
                     <option value="feminino" selected>Feminino</option>
@@ -53,15 +53,15 @@
             </div>
             <div class="form-group">
                 <label class="form-label">Telefone</label>
-                <input type="tel" class="form-input" value="+11 94545 5678">
+                <input type="tel" class="form-input" name="telefone" value="+11 94545 5678">
             </div>
             <div class="form-group">
                 <label class="form-label">Email</label>
-                <input type="email" class="form-input" value="sofia.almeida@email.com">
+                <input type="email" class="form-input" name="email" value="sofia.almeida@email.com">
             </div>
             <div class="form-group">
                 <label class="form-label">Endereço</label>
-                <input type="text" class="form-input" value="Rua das Flores, 123, Lisboa">
+                <input type="text" class="form-input" name="endereco" value="Rua das Flores, 123, Lisboa">
             </div>
         </div>
     </div>
@@ -199,7 +199,7 @@
             </table>
         </div>
         <div class="text-center">
-            <button class="btn-primary-action" onclick="alert('Adicionar Diagnóstico')">
+            <button class="btn-primary-action">
                 Adicionar Diagnóstico
             </button>
         </div>
@@ -234,129 +234,13 @@
             </table>
         </div>
         <div class="text-center">
-            <button class="btn-secondary-action" onclick="alert('Adicionar Tratamento')">
+            <button class="btn-secondary-action">
                 Adicionar Tratamento
             </button>
         </div>
     </div>
 </main>
 
-<script>
-
-function saveAuth(data) {
-    localStorage.setItem('authToken', data.token);
-    localStorage.setItem('userName', data.user.nome);
-}
-
-function clearAuth() {
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('userName');
-}
-
-function isLogged() {
-    return !!localStorage.getItem('authToken');
-}
-
-function getUserName() {
-    return localStorage.getItem('userName') || 'Usuário';
-}
-
-function renderHeader(navContainerId) {
-    const nav = document.getElementById(navContainerId);
-    if (!nav) {
-        console.error('Elemento navButtons não encontrado');
-        return;
-    }
-
-    nav.innerHTML = '';
-
-    if (isLogged()) {
-        const avatar = document.createElement('div');
-        avatar.className = 'user-avatar';
-        avatar.textContent = getUserName().trim().charAt(0).toUpperCase();
-        avatar.title = 'Clique para sair';
-        avatar.style.cursor = 'pointer';
-        avatar.onclick = function() {
-            if (confirm('Sair da conta?')) {
-                clearAuth();
-                renderHeader(navContainerId);
-                window.location.href = '/views/home.html';
-            }
-        };
-        nav.appendChild(avatar);
-    } else {
-        const login = document.createElement('a');
-        login.href = '/views/login.html';
-        login.className = 'btn-secondary';
-        login.textContent = 'Cadastro/Login';
-        nav.appendChild(login);
-    }
-}
-
-function switchTabs(tabId) {
-    console.log('🔄 Trocando para aba:', tabId);
-
-    const allTabs = document.querySelectorAll('.tab');
-    allTabs.forEach(function(tab) {
-        tab.classList.remove('active');
-    });
-
-    const allContents = document.querySelectorAll('.tab-content');
-    allContents.forEach(function(content) {
-        content.classList.remove('active');
-    });
-
-    const targetTab = document.querySelector('.tab[data-tab="' + tabId + '"]');
-    if (targetTab) {
-        targetTab.classList.add('active');
-        console.log('✅ Aba ativada:', tabId);
-    } else {
-        console.error('❌ Aba não encontrada:', tabId);
-    }
-
-    const targetContent = document.getElementById(tabId);
-    if (targetContent) {
-        targetContent.classList.add('active');
-        console.log('✅ Conteúdo ativado:', tabId);
-    } else {
-        console.error('❌ Conteúdo não encontrado:', tabId);
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('✅ DOM carregado - Prontuário');
-
-    if (!isLogged()) {
-        console.log('⚠️ Usuário não logado, criando sessão fake');
-        saveAuth({ token: 'session', user: { nome: 'Clara' } });
-    }
-
-    renderHeader('navButtons');
-
-    const tabs = document.querySelectorAll('.tab');
-    console.log('📋 Total de abas encontradas:', tabs.length);
-
-    tabs.forEach(function(tab, index) {
-        const tabId = tab.getAttribute('data-tab');
-        console.log('🔗 Configurando aba ' + (index + 1) + ':', tabId);
-
-        tab.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('🖱️ Clique na aba:', tabId);
-            switchTabs(tabId);
-        });
-    });
-
-    const btnLinks = document.querySelectorAll('.btn-link');
-    btnLinks.forEach(function(link) {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Visualização indisponível.');
-        });
-    });
-
-    console.log('✅ Prontuário inicializado com sucesso');
-});
-</script>
+<script type="module" src="../js/controllers/prontuarioController.js"></script>
 </body>
 </html>
