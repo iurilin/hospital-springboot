@@ -1,5 +1,7 @@
 package com.uniter.hospital_SpringBoot.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -28,6 +30,7 @@ public class Paciente implements Serializable {
     @Column(columnDefinition = "TEXT")
     private String historicoClinico;
 
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name = "usuario_id", nullable = false, unique = true)
     private Usuario usuario;

@@ -1,5 +1,6 @@
 package com.uniter.hospital_SpringBoot.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -27,10 +28,12 @@ public class Consulta implements Serializable {
     private Paciente paciente;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "profissional_id", nullable = false)
     private ProfissionalSaude profissionalSaude;
 
     @OneToOne(mappedBy = "consulta", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Prontuario prontuario;
 
     public Consulta() {

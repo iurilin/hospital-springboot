@@ -1,5 +1,6 @@
 package com.uniter.hospital_SpringBoot.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -23,6 +24,7 @@ public class Usuario implements Serializable {
     private String name;
 
     @OneToOne(mappedBy = "usuario")
+    @JsonManagedReference
     private Paciente paciente;
 
     @OneToOne(mappedBy = "usuario")
