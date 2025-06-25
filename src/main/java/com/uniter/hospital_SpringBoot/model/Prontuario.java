@@ -1,5 +1,6 @@
 package com.uniter.hospital_SpringBoot.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -24,6 +25,7 @@ public class Prontuario implements Serializable {
 
     @OneToOne
     @JoinColumn(name = "consulta_id", nullable = false, unique = true)
+    @JsonBackReference
     private Consulta consulta;
 
     public Prontuario() {
