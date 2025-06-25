@@ -3,7 +3,9 @@ package com.uniter.hospital_SpringBoot.controllers;
 import com.uniter.hospital_SpringBoot.DTO.ProfissionalSaudeDTO;
 import com.uniter.hospital_SpringBoot.model.ProfissionalSaude;
 import com.uniter.hospital_SpringBoot.repositories.ProfissionalSaudeRepository;
+import com.uniter.hospital_SpringBoot.service.ProfissionalSaudeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,39 +17,35 @@ import java.util.Optional;
 public class ProfissionalSaudeController {
 
     @Autowired
-    private ProfissionalSaudeRepository repository;
+    private ProfissionalSaudeService service;
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<ProfissionalSaudeDTO>> findAll() {
-        List<ProfissionalSaude> list = repository.findAll();
-        List<ProfissionalSaudeDTO> listDto = list.stream().map(ProfissionalSaudeDTO::new).toList();
-        return ResponseEntity.ok().body(listDto);
+        List<ProfissionalSaudeDTO> list = service.findAll();
+        return ResponseEntity.ok().body(list);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<ProfissionalSaudeDTO> findById(@PathVariable Long id) {
-        Optional<ProfissionalSaude> obj = repository.findById(id);
-        return obj.map(value -> ResponseEntity.ok().body(new ProfissionalSaudeDTO(value)))
-                .orElse(ResponseEntity.notFound().build());
+        ProfissionalSaudeDTO obj = service.findById(id);
+        return ResponseEntity.ok().body(obj);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<ProfissionalSaudeDTO> insert(@RequestBody ProfissionalSaude obj) {
-        ProfissionalSaude novo = repository.save(obj);
-        return ResponseEntity.ok().body(new ProfissionalSaudeDTO(novo));
+        ProfissionalSaudeDTO newObj = service.insert(obj);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newObj);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<ProfissionalSaudeDTO> update(@PathVariable Long id, @RequestBody ProfissionalSaude obj) {
-        if (!repository.existsById(id)) return ResponseEntity.notFound().build();
-        obj.setId(id);
-        return ResponseEntity.ok().body(new ProfissionalSaudeDTO(repository.save(obj)));
+        ProfissionalSaudeDTO updated = service.update(id, obj);
+        return ResponseEntity.ok().body(updated);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        if (!repository.existsById(id)) return ResponseEntity.notFound().build();
-        repository.deleteById(id);
+        service.delete(id);
         return ResponseEntity.noContent().build();
     }
 }

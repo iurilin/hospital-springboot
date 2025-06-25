@@ -1,51 +1,54 @@
 package com.uniter.hospital_SpringBoot.controllers;
 
+import com.uniter.hospital_SpringBoot.DTO.ProntuarioDTO;
 import com.uniter.hospital_SpringBoot.model.Prontuario;
 import com.uniter.hospital_SpringBoot.repositories.ProntuarioRepository;
+import com.uniter.hospital_SpringBoot.service.ProntuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/prontuarios")
 public class ProntuarioController {
 
     @Autowired
-    private ProntuarioRepository repository;
+    private ProntuarioService service;
 
-    @GetMapping(produces = "application/json")
-    public ResponseEntity<List<Prontuario>> findAll() {
-        List<Prontuario> list = repository.findAll();
-        return ResponseEntity.ok().body(list);
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<ProntuarioDTO>> findAll() {
+        List<Prontuario> list = service.findAll();
+        List<ProntuarioDTO> listDto = list.stream().map(ProntuarioDTO::new).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDto);
     }
 
-    @GetMapping(value = "/{id}", produces = "application/json")
-    public ResponseEntity<Prontuario> findById(@PathVariable Long id) {
-        Optional<Prontuario> obj = repository.findById(id);
-        return obj.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<ProntuarioDTO> findById(@PathVariable Long id) {
+        Prontuario obj = service.findById(id);
+        return ResponseEntity.ok().body(new ProntuarioDTO(obj));
     }
 
-    @PostMapping(consumes = {"application/json", "application/json;charset=UTF-8"})
-    public ResponseEntity<Prontuario> insert(@RequestBody Prontuario obj) {
-        return ResponseEntity.ok().body(repository.save(obj));
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<ProntuarioDTO> insert(@RequestBody ProntuarioDTO dto) {
+        Prontuario novo = service.insert(dto);
+        return ResponseEntity.ok().body(new ProntuarioDTO(novo));
     }
 
-    @PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Prontuario> update(@PathVariable Long id, @RequestBody Prontuario obj) {
-        if (!repository.existsById(id)) return ResponseEntity.notFound().build();
-        obj.setId(id);
-        Prontuario updated = repository.save(obj);
-        return ResponseEntity.ok().body(updated);
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<ProntuarioDTO> update(@PathVariable Long id, @RequestBody ProntuarioDTO dto) {
+        Prontuario atualizado = service.update(id, dto);
+        return ResponseEntity.ok().body(new ProntuarioDTO(atualizado));
     }
 
-    @DeleteMapping("/{id}")
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        if (!repository.existsById(id)) return ResponseEntity.notFound().build();
-        repository.deleteById(id);
+        service.delete(id);
         return ResponseEntity.noContent().build();
     }
 }
