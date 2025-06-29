@@ -3,16 +3,12 @@ package com.uniter.hospital_SpringBoot.controllers;
 
 import com.uniter.hospital_SpringBoot.DTO.PacienteDTO;
 import com.uniter.hospital_SpringBoot.model.Paciente;
-import com.uniter.hospital_SpringBoot.repositories.PacienteRepository;
-import com.uniter.hospital_SpringBoot.repositories.UsuarioRepository;
 import com.uniter.hospital_SpringBoot.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/pacientes")

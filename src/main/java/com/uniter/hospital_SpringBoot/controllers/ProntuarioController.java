@@ -2,16 +2,12 @@ package com.uniter.hospital_SpringBoot.controllers;
 
 import com.uniter.hospital_SpringBoot.DTO.ProntuarioDTO;
 import com.uniter.hospital_SpringBoot.model.Prontuario;
-import com.uniter.hospital_SpringBoot.repositories.ProntuarioRepository;
 import com.uniter.hospital_SpringBoot.service.ProntuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController

@@ -1,10 +1,6 @@
 package com.uniter.hospital_SpringBoot.DTO;
 
-import com.uniter.hospital_SpringBoot.model.Consulta;
 import com.uniter.hospital_SpringBoot.model.Prontuario;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

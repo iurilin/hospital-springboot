@@ -120,4 +120,8 @@ public class Usuario implements Serializable, UserDetails {
     public String getUsername() {
         return login;
     }
+
+    public String getLogin() {
+        return login;
+    }
 }

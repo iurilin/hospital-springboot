@@ -2,7 +2,6 @@ package com.uniter.hospital_SpringBoot.controllers;
 
 import com.uniter.hospital_SpringBoot.DTO.ProfissionalSaudeDTO;
 import com.uniter.hospital_SpringBoot.model.ProfissionalSaude;
-import com.uniter.hospital_SpringBoot.repositories.ProfissionalSaudeRepository;
 import com.uniter.hospital_SpringBoot.service.ProfissionalSaudeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/profissionaissaude")
